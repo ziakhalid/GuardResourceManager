@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="shift_names" tools:ignore="MissingTranslation">
+        <item>Morning Shifts</item>
+        <item>Mid-Day Shift</item>
+        <item>Evening</item>
+        <item>Overnight Shift</item>
+    </string-array>
+
+    <string-array name="api_names" tools:ignore="MissingTranslation">
+        <item>Production</item>
+        <item>Mock Mode</item>
+    </string-array>
+
+</resources>

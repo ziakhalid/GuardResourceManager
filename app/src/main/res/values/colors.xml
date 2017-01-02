@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00695C</color>
+    <color name="colorReplaceButton">#252F41</color>
+    <color name="colorSaveButton">#238997</color>
+    <color name="colorReplaceButtonDark">#009688</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="loginColor">#FDBD25</color>
+    <color name="logoutColor">#E5E5E5</color>
+    <color name="buttonTextColor">@color/colorBlack</color>
+    <color name="splashScreenBackground">#3d3957</color>
+
+    <!-- Preferences Activity -->
+    <color name="preferences_text">#495863</color>
+    <color name="preferences_activity_bg">#eceff1</color>
+    <color name="preferences_category_bg">#c0c7cd</color>
+    <color name="preferences_divider">#c0c7cd</color>
+    <color name="preferences_highlight">#40000000</color>
+
+    <color name="lighter_gray_no_transparent">#FFDDDDDD</color>
+</resources>

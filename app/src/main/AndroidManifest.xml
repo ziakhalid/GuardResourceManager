@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.guardresourcemanager.genesis.guardresourcemanager"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".application.GRMApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/img_guard"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GuardHomeActivity"
+            android:theme="@style/Theme.Phone.NoActionBar" />
+        <activity
+            android:name=".activity.GRMPreferenceActivity"
+            android:theme="@style/Theme.Phone.Preferences" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="75860e9d67cf6590bc63ba4c5510b4ceeeb4870b" />
+
+        <activity android:name=".activity.TestActivity"></activity>
+    </application>
+
+</manifest>

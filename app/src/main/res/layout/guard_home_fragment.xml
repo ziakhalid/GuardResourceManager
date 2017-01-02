@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login" />
+
+        <Button
+            android:id="@+id/btn_timeIn"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="top"
+            android:layout_margin="5dp"
+            android:background="@drawable/time_in_button_selector"
+            android:text="@string/check_in"
+            android:textColor="@drawable/replace_button_text_selector"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_timeOut"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="bottom"
+            android:layout_margin="5dp"
+            android:background="@drawable/time_out_button_selector"
+            android:text="@string/check_out"
+            android:textColor="@drawable/replace_button_text_selector"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+</LinearLayout>

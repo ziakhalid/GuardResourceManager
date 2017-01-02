@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_title"
+        android:title="USER">
+
+        <ListPreference
+            android:entries="@array/shift_names"
+            android:entryValues="@array/shift_names"
+            android:key="@string/preference_which_timing_to_use_key"
+            android:layout="@layout/preference"
+            android:title="Select Shift Timings" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_title"
+        android:title="LOCATION">
+
+        <EditTextPreference
+            android:defaultValue="30"
+            android:inputType="number"
+            android:key="@string/preference_gps_updates_key"
+            android:summary="@string/pref_gps_updates_summary"
+            android:title="@string/pref_gps_updates" />
+
+        <EditTextPreference
+            android:defaultValue="8"
+            android:inputType="number"
+            android:key="@string/preference_max_run_time_key"
+            android:summary="@string/pref_max_run_time_summary"
+            android:title="@string/pref_max_run_time" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/preference_timestamp_key"
+            android:summary="@string/pref_timestamp_summary"
+            android:title="@string/pref_timestamp" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/preference_accuracy"
+            android:summary="@string/pref_gps_awake_explain"
+            android:title="@string/pref_gps_awake" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/preference_stop_location_service"
+            android:summary="@string/pref_stop_location_service_explain"
+            android:title="@string/pref_stop_location_service" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_title"
+        android:title="DEVELOPER OPTION">
+
+        <ListPreference
+            android:entries="@array/api_names"
+            android:entryValues="@array/api_names"
+            android:key="@string/preference_which_api_to_use_key"
+            android:layout="@layout/preference"
+            android:title="Select API" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
