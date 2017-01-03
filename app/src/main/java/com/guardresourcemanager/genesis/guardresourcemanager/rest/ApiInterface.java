@@ -23,13 +23,6 @@ public interface ApiInterface {
 	Observable<List<Guard>> getGuardCheckOutList(@Query("date") String date,
 		@Query("imei") String imei);
 
-/*
-	@GET("/sgm_android/WebService.asmx/Ins_guard_Shift_Updt")
-	Call<List<GuardDataEntryResponse>> sendGuardAttendence(@Query("grdid") String guardId,
-		@Query("gaurd_name") String guardName, @Query("dttm") String dateTime, @Query("imei") String imei,
-		@Query("rep_flag") boolean repFlag, @Query("intm_flag") boolean intmFlag,@Query("shift_id") String shiftId);
-*/
-
 	@GET("/sgm_android/WebService.asmx/Ins_guard_Shift_Updt")
 	Observable<List<GuardDataEntryResponse>> sendGuardAttendence(@Query("grdid") String guardId,
 		@Query("gaurd_name") String guardName, @Query("dttm") String dateTime, @Query("imei") String imei,
