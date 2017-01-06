@@ -29,7 +29,6 @@ public class CustomSpinnerAdapter extends ArrayAdapter<Shift> {
 
 		inflater = (LayoutInflater) context1
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 	}
 
 	@Override

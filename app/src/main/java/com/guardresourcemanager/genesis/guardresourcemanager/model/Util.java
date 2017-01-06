@@ -21,6 +21,25 @@ public class Util {
 	public static final String RESPONSE_SUCCESS = "success";
 	private static String IMEI ="";
 	private static String CENTER_ID ;
+	private static double Latitude ;
+	private static double Longitude ;
+
+	public static double getLatitude() {
+		return Latitude;
+	}
+
+	public static void setLatitude(double latitude) {
+		Latitude = latitude;
+	}
+
+	public static double getLongitude() {
+		return Longitude;
+	}
+
+	public static void setLongitude(double longitude) {
+		Longitude = longitude;
+	}
+
 	private static Observable<Shift> selectedShiftObservable = null;
 
 	public static Observable<Shift> getSelectedShiftObservable() {
