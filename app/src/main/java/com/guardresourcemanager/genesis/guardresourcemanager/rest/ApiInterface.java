@@ -5,6 +5,7 @@ import java.util.List;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Center;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Guard;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.GuardDataEntryResponse;
+import com.guardresourcemanager.genesis.guardresourcemanager.model.LocationResponse;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Panic;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.GrmResponse;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Shift;
@@ -43,5 +44,18 @@ public interface ApiInterface {
 
 	@GET("/sgm_android/WebService.asmx/getshiftSify")
 	Observable<List<Shift>> getShiftInfo(@Query("center_id") String centerId);
+
+	@GET("/sgm_android/WebService.asmx/insertfolochist")
+	Call<List<LocationResponse>> sendGpsData
+			(@Query("lat") String latitude,
+			 @Query("lon") String longitude,
+			 @Query("imei") String imei,
+			 @Query("battery") String battery,
+			 @Query("date_time") String dateTime,
+			 @Query("Accurate") String accurate,
+			 @Query("Panic") String panic,
+			 @Query("Speed") String speed,
+			 @Query("location") String location,
+			 @Query("Direction") String direction);
 
 }
