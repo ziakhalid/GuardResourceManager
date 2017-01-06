@@ -1,6 +1,7 @@
 package com.guardresourcemanager.genesis.guardresourcemanager.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.guardresourcemanager.genesis.guardresourcemanager.R;
+import com.guardresourcemanager.genesis.guardresourcemanager.activity.GuardHomeActivity;
+import com.guardresourcemanager.genesis.guardresourcemanager.service.LocationService;
 import com.jakewharton.rxbinding.view.RxView;
 
 import butterknife.BindView;
@@ -44,6 +47,10 @@ public class GuardHomeFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 		@Nullable Bundle savedInstanceState) {
+
+		Intent i;
+		i = new Intent(context, LocationService.class);
+		getActivity().startService(i);
 
 		View view = inflater.inflate(R.layout.guard_home_fragment, container, false);
 		unbinder = ButterKnife.bind(this, view);

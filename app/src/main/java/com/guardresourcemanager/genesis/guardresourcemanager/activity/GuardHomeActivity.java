@@ -35,6 +35,7 @@ import com.guardresourcemanager.genesis.guardresourcemanager.model.Shift;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Util;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiClient;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiInterface;
+import com.guardresourcemanager.genesis.guardresourcemanager.service.LocationService;
 
 import rx.Observable;
 import rx.Observer;

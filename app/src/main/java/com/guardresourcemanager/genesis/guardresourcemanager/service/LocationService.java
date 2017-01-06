@@ -92,8 +92,9 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
 
             Call<List<LocationResponse>> call = apiService.sendGpsData(currentLat + "", currentLng + "", deviceNum,
-                    mProgressStatus + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(), currentAcc + "", "false",
-                    currentSpeed + "", getCompleteAddressString(currentLat, currentLng), "");
+                    mProgressStatus + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(),
+                    currentAcc + "", "false",currentSpeed + "",
+                    getCompleteAddressString(currentLat, currentLng), "");
 
             call.enqueue(new Callback<List<LocationResponse>>() {
 
