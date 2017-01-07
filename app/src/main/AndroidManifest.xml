@@ -32,7 +32,10 @@
             android:name="io.fabric.ApiKey"
             android:value="75860e9d67cf6590bc63ba4c5510b4ceeeb4870b" />
 
-        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.TestActivity">
+
+        </activity>
+        <service android:name=".service.LocationService" />
     </application>
 
 </manifest>

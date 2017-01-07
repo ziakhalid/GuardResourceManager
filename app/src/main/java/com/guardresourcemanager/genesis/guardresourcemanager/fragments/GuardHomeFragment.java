@@ -48,10 +48,6 @@ public class GuardHomeFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 		@Nullable Bundle savedInstanceState) {
 
-		Intent i;
-		i = new Intent(context, LocationService.class);
-		getActivity().startService(i);
-
 		View view = inflater.inflate(R.layout.guard_home_fragment, container, false);
 		unbinder = ButterKnife.bind(this, view);
 

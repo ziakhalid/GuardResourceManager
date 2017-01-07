@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -174,6 +175,10 @@ public class GuardHomeActivity extends AppCompatActivity implements ActivityComp
 		setNormalToolbar();
 		getPanicList();
 		getCenterInfo();
+
+		Intent i = new Intent(this, LocationService.class);
+		startService(i);
+Log.e("anu","service intent fired");
 
 		fragmentManager = getSupportFragmentManager();
 		guardHomeFragment = GuardHomeFragment
