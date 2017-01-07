@@ -87,8 +87,10 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             deviceNum = telephonyManager.getDeviceId();
 
-            Toast.makeText(LocationService.this,"loc:" +currentLat + "/ " + currentLng +
-                    " /" + currentAcc + "/ " + currentSpeed +"/"+currentDateTime +"/"+deviceNum, Toast.LENGTH_LONG).show();
+           /* Toast.makeText(LocationService.this,"loc:" +currentLat + "/ " + currentLng +
+                    " /" + currentAcc + "/ " + currentSpeed +"/"+currentDateTime +"/"+deviceNum, Toast.LENGTH_LONG).show();*/
+
+            Toast.makeText(LocationService.this,"**** Beware !!! Device Tracking Started ****",Toast.LENGTH_LONG).show();
 
 
             Call<List<LocationResponse>> call = apiService.sendGpsData(currentLat + "", currentLng + "", deviceNum,
