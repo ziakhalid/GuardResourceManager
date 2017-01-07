@@ -25,6 +25,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.LocationResponse;
+import com.guardresourcemanager.genesis.guardresourcemanager.model.Util;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiClient;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiInterface;
 
@@ -77,6 +78,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
             currentLat = location.getLatitude();
             currentLng = location.getLongitude();
             currentAcc = location.getAccuracy();
+           // currentSpeed = location.getSpeed();
             currentSpeed = location.getSpeed();
             currentDateTime = com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime();
             mContext = getApplicationContext();
@@ -86,6 +88,9 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
             String deviceNum;
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             deviceNum = telephonyManager.getDeviceId();
+
+            Util.setLatitude(currentLat);
+            Util.setLongitude(currentLng);
 
            /* Toast.makeText(LocationService.this,"loc:" +currentLat + "/ " + currentLng +
                     " /" + currentAcc + "/ " + currentSpeed +"/"+currentDateTime +"/"+deviceNum, Toast.LENGTH_LONG).show();*/

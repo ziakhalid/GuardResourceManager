@@ -37,10 +37,10 @@ public interface ApiInterface {
 
 	@GET("/sgm_android/WebService.asmx/Ins_Panic_alert_Updated")
 	Observable<List<GrmResponse>> sendPanicInfo(@Query("alert_name") String panicName, @Query("imei") String imei,
-		@Query("lat") String lat, @Query("lon") String lon, @Query("DTTM") String dttm,
-		@Query("center_name") String centerName, @Query("center_id") String centerID,
-		@Query("panictype_id") String panicTypeID,
-		@Query("remark") String remark);
+												@Query("lat") double lat, @Query("lon") double lon, @Query("DTTM") String dttm,
+												@Query("center_name") String centerName, @Query("center_id") String centerID,
+												@Query("panictype_id") String panicTypeID,
+												@Query("remark") String remark);
 
 	@GET("/sgm_android/WebService.asmx/getshiftSify")
 	Observable<List<Shift>> getShiftInfo(@Query("center_id") String centerId);
