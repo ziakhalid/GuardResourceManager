@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.guardresourcemanager.genesis.guardresourcemanager.R;
 import com.guardresourcemanager.genesis.guardresourcemanager.adapter.CustomSpinnerAdapter;
@@ -157,7 +158,7 @@ public class GuardHomeActivity extends AppCompatActivity implements ActivityComp
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		Toast.makeText(GuardHomeActivity.this,"Beware !!! Device Tracking Started",Toast.LENGTH_LONG).show();
 		telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
 		int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
