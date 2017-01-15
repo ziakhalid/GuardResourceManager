@@ -25,16 +25,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.LocationResponse;
+import com.guardresourcemanager.genesis.guardresourcemanager.model.StoreAndSend;
 import com.guardresourcemanager.genesis.guardresourcemanager.model.Util;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiClient;
 import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
+import rx.Observer;
 
 public class LocationService extends Service implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -50,6 +55,10 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     private GoogleApiClient mGoogleApiClient;
     // A request to connect to Location Services
     private LocationRequest mLocationRequest;
+    ArrayList<StoreAndSend> gpsParams=new ArrayList<StoreAndSend>(10);
+    private int threshold=0;
+
+
 
     private LocationListener locationListener;
     ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
@@ -96,6 +105,38 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
                     " /" + currentAcc + "/ " + currentSpeed +"/"+currentDateTime +"/"+deviceNum, Toast.LENGTH_LONG).show();*/
 
             Toast.makeText(LocationService.this,"Beware !!! Device Tracking Started",Toast.LENGTH_LONG).show();
+
+            StoreAndSend storeAndSend=new StoreAndSend();
+            storeAndSend.setAccurate(currentAcc+"");
+            storeAndSend.setBattery(mProgressStatus+"");
+            storeAndSend.setDateTime(Util.getCurrentDateTime());
+            storeAndSend.setImei(deviceNum);
+            storeAndSend.setLongitude(currentLng+"");
+            storeAndSend.setLatitude(currentLat+"");
+            storeAndSend.setSpeed(currentSpeed+"");
+           //storeAndSend.setDirection();
+           //storeAndSend.setLocation();
+            //storeAndSend.setPanic();
+            gpsParams.add(storeAndSend);
+
+
+            Observable.timer(1, TimeUnit.MINUTES).subscribe(new Observer<Long>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Long aLong) {
+                    sendAccumulatedData();
+                }
+            });
+
 
             Call<List<LocationResponse>> call = apiService.sendGpsData(currentLat + "", currentLng + "", deviceNum,
                     mProgressStatus + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(),
@@ -224,4 +265,33 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     public void onConnectionSuspended(int arg0) {
         // TODO Auto-generated method stub
     }
+
+
+    private void sendAccumulatedData(){
+
+        for (int i=0 ; i < gpsParams.size() ; i++){
+            StoreAndSend data = gpsParams.get(i);
+
+            Call<List<LocationResponse>> call = apiService.sendGpsData(data.getLongitude() + "", data.getLongitude() + "", data.getImei(),
+                    data.getBattery() + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(),
+                    data.getAccurate() + "", "false",data.getSpeed() + "",
+                    getCompleteAddressString(0.0, 0.0),"");
+
+            call.enqueue(new Callback<List<LocationResponse>>() {
+
+                @Override
+                public void onResponse(Call<List<LocationResponse>> call, Response<List<LocationResponse>> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<List<LocationResponse>> call, Throwable t) {
+
+                }
+            });
+        }
+
+        gpsParams.clear();
+    }
+
 }

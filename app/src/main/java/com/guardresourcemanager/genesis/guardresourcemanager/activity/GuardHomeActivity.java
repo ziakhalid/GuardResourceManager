@@ -244,9 +244,7 @@ Log.e("anu","service intent fired");
 
 				}
 			});
-
 		}
-
 	}
 
 	private void updateGuardList(List<Guard> guardList, String action) {
@@ -450,6 +448,5 @@ Log.e("anu","service intent fired");
 				});
 		//test comment
 		//second test commit
-
 	}
 }
