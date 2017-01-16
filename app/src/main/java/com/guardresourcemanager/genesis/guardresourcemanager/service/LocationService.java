@@ -18,7 +18,6 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,13 +32,12 @@ import com.guardresourcemanager.genesis.guardresourcemanager.rest.ApiInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Observable;
-import rx.Observer;
 
 public class LocationService extends Service implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -55,7 +53,8 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     private GoogleApiClient mGoogleApiClient;
     // A request to connect to Location Services
     private LocationRequest mLocationRequest;
-    ArrayList<StoreAndSend> gpsParams=new ArrayList<StoreAndSend>(10);
+    Timer timer;
+    ArrayList<StoreAndSend> locationList =new ArrayList<StoreAndSend>(10);
     private int threshold=0;
 
 
@@ -104,7 +103,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
            /* Toast.makeText(LocationService.this,"loc:" +currentLat + "/ " + currentLng +
                     " /" + currentAcc + "/ " + currentSpeed +"/"+currentDateTime +"/"+deviceNum, Toast.LENGTH_LONG).show();*/
 
-            Toast.makeText(LocationService.this,"Beware !!! Device Tracking Started",Toast.LENGTH_LONG).show();
+           // Toast.makeText(LocationService.this,"Device Tracking Started",Toast.LENGTH_LONG).show();
 
             StoreAndSend storeAndSend=new StoreAndSend();
             storeAndSend.setAccurate(currentAcc+"");
@@ -117,26 +116,9 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
            //storeAndSend.setDirection();
            //storeAndSend.setLocation();
             //storeAndSend.setPanic();
-            gpsParams.add(storeAndSend);
+            locationList.add(storeAndSend);
 
-
-            Observable.timer(1, TimeUnit.MINUTES).subscribe(new Observer<Long>() {
-                @Override
-                public void onCompleted() {
-
-                }
-
-                @Override
-                public void onError(Throwable e) {
-
-                }
-
-                @Override
-                public void onNext(Long aLong) {
-                    sendAccumulatedData();
-                }
-            });
-
+            Log.e("anu", "Called by onLocation Changed");
 
             Call<List<LocationResponse>> call = apiService.sendGpsData(currentLat + "", currentLng + "", deviceNum,
                     mProgressStatus + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(),
@@ -216,6 +198,18 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API).addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).build();
+
+        timer=new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+//                Log.d("anu","yes i m repeating");
+                if (locationList != null && locationList.size()>0){
+                    sendAccumulatedData("Timer");
+                }
+
+            }
+        }, 1000, 10000);
     }
 
     @Override
@@ -267,12 +261,14 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     }
 
 
-    private void sendAccumulatedData(){
+    private void sendAccumulatedData(String calledBy){
 
-        for (int i=0 ; i < gpsParams.size() ; i++){
-            StoreAndSend data = gpsParams.get(i);
+                        Log.d("anu","Called By : "+calledBy);
 
-            Call<List<LocationResponse>> call = apiService.sendGpsData(data.getLongitude() + "", data.getLongitude() + "", data.getImei(),
+        for (int i = 0; i < locationList.size() ; i++){
+            StoreAndSend data = locationList.get(i);
+
+            Call<List<LocationResponse>> call = apiService.sendGpsData(data.getLatitude() + "", data.getLongitude() + "", data.getImei(),
                     data.getBattery() + "", com.guardresourcemanager.genesis.guardresourcemanager.model.Util.getCurrentDateTime(),
                     data.getAccurate() + "", "false",data.getSpeed() + "",
                     getCompleteAddressString(0.0, 0.0),"");
@@ -291,7 +287,8 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
             });
         }
 
-        gpsParams.clear();
+        locationList.clear();
+
     }
 
 }
