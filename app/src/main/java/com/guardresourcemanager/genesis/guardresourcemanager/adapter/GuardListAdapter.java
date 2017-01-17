@@ -57,7 +57,6 @@ public class GuardListAdapter extends RecyclerView.Adapter<GuardListAdapter.MyVi
 				Util.showToastLong(context, "Please Select Shift");
 			}
 		});
-
 	}
 
 	private void sendUpdatedGuardAttendanceToServer(Shift shift) {
@@ -183,6 +182,11 @@ public class GuardListAdapter extends RecyclerView.Adapter<GuardListAdapter.MyVi
 				holder.imageProgressStatus.setVisibility(View.GONE);
 				break;
 			}
+		}else{
+			holder.btnReplaceGuard.setVisibility(View.VISIBLE);
+			holder.guardDataSendProgress.setVisibility(View.GONE);
+			holder.imageProgressStatus.setVisibility(View.GONE);
+			holder.cbGuardAttendance.setVisibility(View.VISIBLE);
 		}
 
 		RxView.clicks(holder.btnReplaceGuard).subscribe(aVoid -> {
