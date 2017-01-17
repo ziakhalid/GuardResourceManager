@@ -341,11 +341,14 @@ Log.e("anu","service intent fired");
 
 				@Override
 				public void onNext(Center center) {
+
 					Util.setCenterName(center.getCenterName());
+
 					Util.setCenterId(center.getCenterId());
 					getShiftDetail(center);
 				}
 			});
+
 	}
 
 	private void getShiftDetail(Center center) {
@@ -448,5 +451,6 @@ Log.e("anu","service intent fired");
 				});
 		//test comment
 		//second test commit
+
 	}
 }

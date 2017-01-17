@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class Center {
 
 	@SerializedName("name")
-	private String centerName = "GRM";
+	//private String centerName = "GRM";
+	private String centerName;
 	@SerializedName("center_id")
 	private String centerId;
 

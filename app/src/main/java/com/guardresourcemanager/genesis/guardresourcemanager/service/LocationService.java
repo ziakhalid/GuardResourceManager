@@ -53,9 +53,9 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     private GoogleApiClient mGoogleApiClient;
     // A request to connect to Location Services
     private LocationRequest mLocationRequest;
-    Timer timer;
+   /* Timer timer;
     ArrayList<StoreAndSend> locationList =new ArrayList<StoreAndSend>(10);
-    private int threshold=0;
+    private int threshold=0;*/
 
 
 
@@ -82,7 +82,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.e(TAG, "onLocationChanged: " + location);
+           // Log.e(TAG, "onLocationChanged: " + location);
             currentLat = location.getLatitude();
             currentLng = location.getLongitude();
             currentAcc = location.getAccuracy();
@@ -105,7 +105,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
            // Toast.makeText(LocationService.this,"Device Tracking Started",Toast.LENGTH_LONG).show();
 
-            StoreAndSend storeAndSend=new StoreAndSend();
+            /*StoreAndSend storeAndSend=new StoreAndSend();
             storeAndSend.setAccurate(currentAcc+"");
             storeAndSend.setBattery(mProgressStatus+"");
             storeAndSend.setDateTime(Util.getCurrentDateTime());
@@ -116,7 +116,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
            //storeAndSend.setDirection();
            //storeAndSend.setLocation();
             //storeAndSend.setPanic();
-            locationList.add(storeAndSend);
+            locationList.add(storeAndSend);*/
 
             Log.e("anu", "Called by onLocation Changed");
 
@@ -199,7 +199,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
                 .addApi(LocationServices.API).addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).build();
 
-        timer=new Timer();
+       /* timer=new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -209,7 +209,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
                 }
 
             }
-        }, 1000, 10000);
+        }, 1000, 10000);*/
     }
 
     @Override
@@ -261,7 +261,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     }
 
 
-    private void sendAccumulatedData(String calledBy){
+    /*private void sendAccumulatedData(String calledBy){
 
                         Log.d("anu","Called By : "+calledBy);
 
@@ -289,6 +289,6 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
         locationList.clear();
 
-    }
+    }*/
 
 }
