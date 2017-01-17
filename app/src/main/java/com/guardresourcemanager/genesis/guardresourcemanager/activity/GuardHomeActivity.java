@@ -208,7 +208,7 @@ Log.e("anu","service intent fired");
 	public void setNormalToolbar() {
 		getSupportActionBar().setDisplayShowTitleEnabled(true);
 		spinnerShiftType.setVisibility(View.GONE);
-		toolbar.setTitle("GRM");
+		toolbar.setTitle(Util.getCenterName().toUpperCase());
 		refreshActionBarMenu();
 	}
 
@@ -343,7 +343,7 @@ Log.e("anu","service intent fired");
 				public void onNext(Center center) {
 
 					Util.setCenterName(center.getCenterName());
-
+					toolbar.setTitle(Util.getCenterName().toUpperCase());
 					Util.setCenterId(center.getCenterId());
 					getShiftDetail(center);
 				}
