@@ -343,7 +343,7 @@ Log.e("anu","service intent fired");
 				public void onNext(Center center) {
 
 					Util.setCenterName(center.getCenterName());
-
+					toolbar.setTitle(center.getCenterName().toUpperCase());
 					Util.setCenterId(center.getCenterId());
 					getShiftDetail(center);
 				}
