@@ -67,7 +67,8 @@ public class Util {
 		CENTER_ID = centerId;
 	}
 
-	private static String CENTER_NAME ;
+	//private static String CENTER_NAME ;
+	private static String CENTER_NAME = "GRM";
 
 	public static String getCurrentDateTime(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
